@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amoblamientos Oli | Muebles a Medida</title>
+
+  <style>
+    /* ===============================
+       RESET GENERAL
+    ================================ */
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+      background-color: #f5f6f7;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    section{
+      scroll-margin-top: 120px;
+    }
+
+    /* ===============================
+       HEADER / NAV
+    ================================ */
+    header{
+      background: #ffffff;
+      padding: 10px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo img{
+      height: 120px;
+    }
+
+    nav{
+      display: flex;
+      align-items: center;
+      margin-right: 120px;
+    }
+
+    nav a{
+      margin-left: 25px;
+      text-decoration: none;
+      color: #192525;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    nav a:hover{
+      color: #b48858;
+    }
+
+    /* ===============================
+       HERO / PORTADA
+    ================================ */
+    .hero{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      padding: 80px 40px;
+      align-items: center;
+      background: linear-gradient(135deg, #ffffff, #f0f1f2);
+    }
+
+    .hero-text h2{
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #222;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p{
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    .btn-wsp{
+      display: inline-block;
+      padding: 14px 32px;
+      background: #c49a6c;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-wsp:hover{
+      background: #b48858;
+      transform: translateY(-2px);
+    }
+
+    .hero-img{
+      height: 360px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .hero-img img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ===============================
+       SECCIONES
+    ================================ */
+    .seccion{
+      padding: 80px 40px;
+      background: #ffffff;
+    }
+
+    .seccion.gris{
+      background: #f5f6f7;
+    }
+
+    .seccion h3{
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+    }
+
+    /* ===============================
+       CARDS
+    ================================ */
+    .cards{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card{
+      background: #f8f9fa;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover{
+      transform: translateY(-10px);
+      box-shadow: 0 20px 35px rgba(0,0,0,0.12);
+    }
+
+    /* ===============================
+       GALERÍA VESTIDORES (AGREGADO)
+    ================================ */
+    .galeria-vestidor{
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .galeria-vestidor img{
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .galeria-vestidor img:hover{
+      transform: scale(1.05);
+    }
+
+    /* ===============================
+       CONTACTO
+    ================================ */
+    .contacto{
+      text-align: center;
+    }
+
+    .contacto-redes{
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .contacto-item{
+      padding: 14px 26px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      color: #fff;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .contacto-item:hover{
+      transform: translateY(-4px);
+      opacity: 0.9;
+    }
+
+    .wsp{ background: #25D366; }
+    .fb{ background: #1877F2; }
+    .ig{ background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
+    .mail{ background: #3f3f3f; }
+
+    /* ===============================
+       FOOTER
+    ================================ */
+    footer{
+      background: #222;
+      color: #eee;
+      text-align: center;
+      padding: 30px;
+    }
+
+    /* ===============================
+       RESPONSIVE
+    ================================ */
+    @media(max-width: 900px){
+      .hero{
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      nav{
+        display: none;
+      }
+    }
+
+      /* ===============================
+    MENU HAMBURGUESA MOBILE
+  ================================ */
+
+  .menu-toggle{
+    display: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #192525;
+  }
+
+  /* MOBILE */
+  @media(max-width: 900px){
+
+    .menu-toggle{
+      display: block;
+    }
+
+    nav{
+      position: absolute;
+      top: 100%;
+      right: 20px;
+      background: #ffffff;
+      flex-direction: column;
+      width: 220px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      border-radius: 12px;
+      padding: 10px 0;
+    }
+
+    nav a{
+      margin: 0;
+      padding: 12px 20px;
+      border-bottom: 1px solid #eee;
+    }
+
+    nav a:last-child{
+      border-bottom: none;
+    }
+
+    nav.active{
+      display: flex;
+    }
+  }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="img/logo.png" alt="Logo Amoblamientos Oli">
+  </div>
+
+  <nav id="menu"s>
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#quienes">Quiénes Somos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+  
+  <div class="menu-toggle" id="menu-toggle">☰</div>
+
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-text">
+    <h2>
+      Muebles a Medida<br>
+      Diseñados para vos
+      
+    </h2>
+
+    <p>
+      Diseñamos y fabricamos muebles a medida, adaptándonos a cada espacio y estilo.
+    </p>
+
+    <a href="https://wa.me/5492995100209" class="btn-wsp" target="_blank">
+      Solicitar Cotización
+    </a>
+  </div>
+
+  <div class="hero-img">
+    <img src="img/mesada.jpeg" alt="Mesada de cocina">
+  </div>
+</section>
+
+<section class="seccion" id="servicios">
+  <h3>Nuestros Servicios</h3>
+
+  <div class="cards">
+    <div class="card">
+      <h4>Cocinas</h4>
+      <p>Amoblamientos en melamina con diseño funcional y moderno.</p>
+      <a href=" Cocina.html" class="btn-wsp" style="margin-top:15px; display:inline-block;"> Ver trabajos </a>
+    </div>
+
+    <div class="card">
+      <h4>Vestidores | Placares </h4>
+      <p>Vestidores a medida, pensados para aprovechar cada espacio.</p>
+      <a href="vestidores.html" class="btn-wsp" style="margin-top:15px; display:inline-block;"> Ver trabajos </a>
+    </div>
+
+    <div class="card">
+      <h4>Puertas</h4>
+      <p>Aberturas que acompañan tu hogar.</p>
+      <a href="Puertas.html" class="btn-wsp" style="margin-top:15px; display:inline-block;"> Ver trabajos </a>
+    </div>
+
+    <div class="card">
+      <h4>Muebles complementarios</h4>
+      <p>Piezas que acompañan tu espacio.</p>
+      <a href="mesas.html" class="btn-wsp" style="margin-top:15px; display:inline-block;"> Ver trabajos </a>
+    </div>
+
+  </div>  
+
+ 
+</section>
+
+<section class="seccion gris" id="quienes">
+  <h3>Quiénes Somos</h3>
+
+  <div class="cards">
+    <div class="card" style="grid-column:1/-1">
+      <p>
+        <strong>Amoblamientos Oli</strong> es una empresa dedicada a la fabricación de muebles a medida, fundada por 
+        <strong>Joaquín Pimentel</strong> hace más de 5 años.
+      </p>
+
+      <p>
+        Desde sus inicios, trabaja con taller propio, utilizando melamina MDF y cuidando cada detalle en el diseño 
+        y la fabricación. Cada proyecto se realiza con dedicación y atención.
+      </p>
+
+      <p>
+        La calidad, el diseño y el trato cercano son los valores que definen cada trabajo.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="seccion contacto" id="contacto">
+  <h3>Contacto</h3>
+  <p>Elegí el medio que prefieras para comunicarte con nosotros.</p>
+
+  <div class="contacto-redes">
+    <a href="https://wa.me/5492995100209" target="_blank" class="contacto-item wsp">WhatsApp</a>
+    <a href="https://www.facebook.com/share/1HCoEyKx5p/?mibextid=wwXIfr" target="_blank" class="contacto-item fb">Facebook</a>
+    <a href="https://www.instagram.com/amoblamientos_oli" target="_blank" class="contacto-item ig">Instagram</a>
+    <a href="mailto:amoblamientooli@gmail.com" class="contacto-item mail">Email</a>
+  </div>
+</section>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('active');
+  });
+</script>
+
+
+<footer>
+  <a>📍 Neuquén Capital</a>
+  <p>© 2026 Amoblamiento Oli - Todos los derechos reservados</p>
+</footer>
+
+</body>
+</html>

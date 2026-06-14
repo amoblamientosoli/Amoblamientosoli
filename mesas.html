@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Puertas | Amoblamientos Oli</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --dorado: #c49a6c;
+      --negro: #1a1a1a;
+      --gris-claro: #fcfcfc;
+      --borde: #eeeeee;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: #ffffff;
+      color: var(--negro);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* ===============================
+       HEADER UNIFICADO
+    ================================ */
+    header{
+      background: #ffffff;
+      padding: 10px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo img{
+      height: 120px;
+    }
+
+    nav{
+      display: flex;
+      align-items: center;
+      margin-right: 120px;
+    }
+
+      nav a{
+      margin-left: 25px;
+      text-decoration: none;
+      color: #192525;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    nav a:hover{
+      color: var(--dorado);
+    }
+
+    .menu-toggle{
+      display: none;
+      font-size: 32px;
+      cursor: pointer;
+      color: #192525;
+    }
+
+    @media(max-width: 900px){
+      nav{
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 20px;
+        background: #ffffff;
+        flex-direction: column;
+        width: 220px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        border-radius: 12px;
+        padding: 10px 0;
+      }
+
+      nav a{
+        margin: 0;
+        padding: 12px 20px;
+        border-bottom: 1px solid #eee;
+      }
+
+      nav a:last-child{
+        border-bottom: none;
+      }
+
+      nav.active{
+        display: flex;
+      }
+
+      .menu-toggle{
+        display: block;
+      }
+    }
+    .galeria-Mesas img{
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 16px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    }
+
+
+
+    /* ===============================
+        INTRO
+    ================================ */
+    .intro {
+      padding: 80px 5% 40px;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .intro span {
+      color: var(--dorado);
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    .intro h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      margin-top: 10px;
+    }
+
+    /* ===============================
+        PROYECTOS (GRILLA)
+    ================================ */
+    .wrapper { max-width: 1300px; margin: 0 auto; padding: 0 5%; }
+
+    .proyecto-card {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 40px;
+      margin-bottom: 120px;
+      align-items: start;
+    }
+
+    .galeria-fotos {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .foto-item {
+      width: 100%;
+      border-radius: 4px;
+      object-fit: cover;
+      cursor: zoom-in;
+      background: #f5f5f5;
+      transition: transform 0.3s ease;
+    }
+
+    .foto-item:hover { transform: scale(1.02); }
+
+    .foto-grande { grid-row: span 2; height: 600px; }
+    .foto-chica { height: 292px; }
+
+    .ficha-tecnica {
+      background: var(--gris-claro);
+      padding: 50px;
+      border: 1px solid var(--borde);
+      border-radius: 8px;
+      position: sticky;
+      top: 120px;
+    }
+
+    .ficha-tecnica h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+
+    .ficha-tecnica p {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 30px;
+      font-weight: 300;
+    }
+
+    .datos-lista { border-top: 1px solid var(--borde); padding-top: 25px; }
+
+    .dato {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 0.85rem;
+    }
+
+    .dato-t {
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--dorado);
+      letter-spacing: 1px;
+    }
+
+    /* Lógica Invertida para PC */
+    @media (min-width: 901px) {
+      .invertido { grid-template-columns: 1.4fr 1fr; }
+      .invertido .ficha-tecnica { order: 2; }
+      .invertido .galeria-fotos { order: 1; }
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .proyecto-card { display: flex; flex-direction: column; }
+      .ficha-tecnica { order: 1; position: static; padding: 30px; margin-bottom: 20px; }
+      .galeria-fotos { order: 2; grid-template-columns: 1fr; }
+      .foto-grande { height: 350px; }
+      .foto-chica { height: 300px; }
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      cursor: zoom-out;
+      backdrop-filter: blur(5px);
+    }
+    .lightbox img { max-width: 90%; max-height: 90vh; }
+
+    footer { background: #1a1a1a; color: #fff; text-align: center; padding: 40px; margin-top: 50px; }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="img/logo.png" alt="Logo Amoblamientos Oli">
+  </div>
+
+  <nav id="menu">
+    <a href="index.html#inicio">Inicio</a>
+    <a href="index.html#servicios">Servicios</a>
+    <a href="index.html#quienes">Quiénes Somos</a>
+    <a href="index.html#contacto">Contacto</a>
+  </nav>
+  <div class="menu-toggle" id="menu-toggle">☰</div>
+
+</header>
+
+<section class="intro">
+  <span>Amoblamientos Oli | Portafolio</span>
+  <h1>Muebles complementarios</h1>
+</section>
+
+<main class="wrapper">
+
+  <article class="proyecto-card">
+    <div class="ficha-tecnica">
+      <h2>Ingreso Moderno</h2>
+      <p>Jerarquizamos la entrada de tu hogar con diseños imponentes. Puertas de gran formato que combinan seguridad y una estética contemporánea en tono Shaara.</p>
+      <div class="datos-lista">
+        <div class="dato"><span class="dato-t">Material</span><span>MDF Hidrófugo</span></div>
+        <div class="dato"><span class="dato-t">Color</span><span>Shaara</span></div>
+        <div class="dato"><span class="dato-t">Barral</span><span>Acero Inoxidable</span></div>
+      </div>
+    </div>
+    <div class="galeria-fotos">
+      <img src="img/Mesas/Trabajo1/img2.jpeg" class="foto-item foto-grande">
+      <img src="img/Mesas/Trabajo1/img5.jpeg" class="foto-item foto-chica">
+      <img src="img/Mesas/Trabajo1/img4.jpeg" class="foto-item foto-chica">
+    </div>
+  </article>
+
+  <article class="proyecto-card invertido">
+    <div class="ficha-tecnica">
+      <h2>Puertas</h2>
+      <p>Puertas de interior diseñadas para fundirse con el ambiente. La terminación en blanco seda aporta una sensación de continuidad y elegancia en cada espacio.</p>
+      <div class="datos-lista">
+        <div class="dato"><span class="dato-t">Estilo</span><span>Minimalista</span></div>
+        <div class="dato"><span class="dato-t">Terminación</span><span>Blanco Mate</span></div>
+        <div class="dato"><span class="dato-t">Herrajes</span><span>Pestillo Premium</span></div>
+      </div>
+    </div>
+    <div class="galeria-fotos">
+      <img src="img/Mesas/Trabajo2/img1.jpeg" class="foto-item foto-grande">
+      <img src="img/Mesas/Trabajo2/img2.jpeg" class="foto-item foto-chica">
+      <img src="img/Mesas/Trabajo2/img3.jpeg" class="foto-item foto-chica">
+    </div>
+  </article>
+
+</main>
+
+<div class="lightbox" id="lbox" onclick="this.style.display='none'">
+  <img src="" id="lbox-img">
+</div>
+
+<footer>
+  <p>📍 Neuquén Capital | Amoblamientos Oli</p>
+  <p>© 2026 - Todos los derechos reservados</p>
+</footer>
+
+<script>
+  // Menú Mobile
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+  toggle.addEventListener('click', () => menu.classList.toggle('active'));
+
+  // Lightbox
+  const lb = document.getElementById('lbox');
+  const lbImg = document.getElementById('lbox-img');
+  document.querySelectorAll('.foto-item').forEach(img => {
+    img.onclick = () => {
+      lb.style.display = 'flex';
+      lbImg.src = img.src;
+    };
+  });
+</script>
+
+</body>
+
+
+</html>
